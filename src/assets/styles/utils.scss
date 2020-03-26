@@ -1,0 +1,51 @@
+//浮动与清除浮动
+.fl{float: left;}
+.fr{float: right;}
+.clearfix:after{display: block;content: '';height: 0;overflow: hidden;clear: both;}
+
+//文字对齐
+.tl{text-align: left;}
+.tr{text-align: right;}
+.tc{text-align: center;}
+
+//粗体
+.fb{font-weight: bold;}
+
+//字体颜色
+.color-danger{color: #F56C6C;}
+.color-success{color: #67C23A;}
+.color-brand{color: #409EFF;}
+.color-warning{color: #E6A23C;}
+.color-info{color: #909399;}
+//常规字体颜色
+.color-main{color: #303133;}
+.color-conventional{color: #606266;}
+.color-secondary{color: #909399;}
+.color-placeholder{color: #C0C4CC;}
+//边框
+.border-default{border: 1px solid #DCDFE6;}
+.border-b{border-bottom: 1px solid #DCDFE6;}
+.border-t{border-top: 1px solid #DCDFE6;}
+.border-l{border-left: 1px solid #DCDFE6;}
+.border-r{border-right: 1px solid #DCDFE6;}
+
+//外边距设置
+.mb10{margin-bottom: 10px;}
+.mb15{margin-bottom: 15px;}
+.mb20{margin-bottom: 20px;}
+.mb30{margin-bottom: 30px;}
+
+.mt10{margin-top: 10px;}
+.mt15{margin-top: 15px;}
+.mt20{margin-top: 20px;}
+.mt30{margin-top: 30px;}
+
+.ml10{margin-left: 10px;}
+.ml15{margin-left: 15px;}
+.ml20{margin-left: 20px;}
+.ml30{margin-left: 30px;}
+
+.mr10{margin-right: 10px;}
+.mr15{margin-right: 15px;}
+.mr20{margin-right: 20px;}
+.mr30{margin-right: 30px;}
