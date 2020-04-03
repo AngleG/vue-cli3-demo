@@ -1,9 +1,16 @@
 import Vue from 'vue';
-import { Component } from 'vue-property-decorator';
-import VueRouter, { RouteConfig } from 'vue-router';
+import { Component, Watch } from 'vue-property-decorator';
+import VueRouter, { RouteConfig, Route } from 'vue-router';
 
 @Component
 export default class AppSidebar extends Vue {
+  /* eslint-disable */
+  @Watch('$route')
+  changeHandle(val: Route, oldVal: Route) {
+    const { fullPath } = val;
+    this.path = fullPath;
+  }
+
   path = '';
 
   menus: RouteConfig[] = [];
@@ -11,7 +18,7 @@ export default class AppSidebar extends Vue {
   isCollapse = false;
 
   created() {
-    console.log(this.$router, 'router....');
+    this.path = this.$route.fullPath;
     this.getMenuList(this.$router);
   }
 
@@ -27,7 +34,6 @@ export default class AppSidebar extends Vue {
         children: (menu as any).children.filter((submenu: RouteConfig) => submenu.meta.isMenu),
       }
     ));
-    console.log(this.menus, 123456);
   }
 
   render() {
