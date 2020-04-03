@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import store from '../store/index';
 
 const Login = () => import(/* webpackChunkName: "login" */ '../views/login/login');
 const Layout = () => import(/* webpackChunkName: "layout" */ '../components/layout/layout');
@@ -7,10 +8,10 @@ const Layout = () => import(/* webpackChunkName: "layout" */ '../components/layo
 Vue.use(VueRouter);
 
 const routes = [
-  // {
-  //   path: '/',
-  //   redirect: '/login',
-  // },
+  {
+    path: '/',
+    redirect: '/login',
+  },
   {
     path: '/login',
     name: 'Login',
@@ -34,7 +35,7 @@ const routes = [
           breadcrumb: [],
           isMenu: true,
         },
-        component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
+        component: () => import(/* webpackChunkName: "welcome" */ '../views/welcome/welcome'),
       },
     ],
   },
@@ -91,6 +92,18 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  const { name, path } = to;
+  const { breadcrumbList } = store.state;
+  if (name && name !== 'Login') {
+    const ifRepeat = breadcrumbList.findIndex((item) => item.name === name) > -1;
+    if (!ifRepeat) {
+      store.dispatch('updateBreadcrumblist', { name, path, type: 'add' });
+    }
+  }
+  next();
 });
 
 export default router;
