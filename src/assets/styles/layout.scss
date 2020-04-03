@@ -47,4 +47,21 @@
       transition: width .3s ease;
     }
   }
+  .breadcrumb-tag{
+    display: -webkit-flex;
+    display: flex;
+    flex-flow: row nowrap;
+    height: 40px;
+    line-height: 40px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.12);
+    text-align: left;
+    padding: 4px 12px 0 12px;
+    box-sizing: border-box;
+    overflow: scroll;
+    .el-tag{
+      margin-right: 5px;
+      border-radius: 1px;
+      cursor: pointer;
+    }
+  }
 }
