@@ -1,8 +1,13 @@
 import Vue from 'vue';
 import { Component, Watch } from 'vue-property-decorator';
 import VueRouter, { RouteConfig, Route } from 'vue-router';
+import subMenus from '../base/sub-menus.vue';
 
-@Component
+@Component({
+  components: {
+    subMenus,
+  },
+})
 export default class AppSidebar extends Vue {
   /* eslint-disable */
   @Watch('$route')
@@ -28,12 +33,13 @@ export default class AppSidebar extends Vue {
     const router: any = $router;
     const { options: { routes } } = router;
     this.menus = routes.filter((route: RouteConfig) => route.children && route.children.length);
-    this.menus = this.menus.map((menu: RouteConfig) => (
-      {
-        ...menu,
-        children: (menu as any).children.filter((submenu: RouteConfig) => submenu.meta.isMenu),
-      }
-    ));
+    console.log(this.menus, '菜单...');
+    // this.menus = this.menus.map((menu: RouteConfig) => (
+    //   {
+    //     ...menu,
+    //     children: (menu as any).children.filter((submenu: RouteConfig) => submenu.meta.isMenu),
+    //   }
+    // ));
   }
 
   render() {
@@ -52,18 +58,7 @@ export default class AppSidebar extends Vue {
           active-text-color="#ffd04b"
           background-color="#001529">
           { menus.map((menu: RouteConfig, index: number) => (
-            <el-submenu index={`${index}+1`} key={menu.name}>
-              <template slot="title">
-                <i class={menu.meta.icon}/>
-                <span slot="title">{menu.name}</span>
-              </template>
-              { menu.children && menu.children.map((submenu: RouteConfig) => (
-                <el-menu-item
-                  index={submenu.path}
-                  key={submenu.path}>
-                  {submenu.name}
-                  </el-menu-item>))}
-            </el-submenu>
+            <sub-menus menu={menu} index={index + ''} key={index} />
           ))}
         </el-menu>
       </div>
