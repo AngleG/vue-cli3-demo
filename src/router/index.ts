@@ -4,6 +4,7 @@ import store from '../store/index';
 
 const Login = () => import(/* webpackChunkName: "login" */ '../views/login/login');
 const Layout = () => import(/* webpackChunkName: "layout" */ '../components/layout/layout');
+const UserBox = () => import(/* webpackChunkName: "user-box" */ '../views/users/user-box.vue');
 
 Vue.use(VueRouter);
 
@@ -21,10 +22,12 @@ const routes = [
     component: Login,
   },
   {
-    path: '/',
+    path: '/welcome',
     name: '欢迎页',
     meta: {
       icon: 'iconfont iconwelcome',
+      // 是否是目录
+      isCatalog: false,
     },
     component: Layout,
     children: [
@@ -32,8 +35,8 @@ const routes = [
         path: '/welcome',
         name: 'welcome',
         meta: {
-          breadcrumb: [],
-          isMenu: true,
+          breadcrumb: ['欢迎页'],
+          isCatalog: false,
         },
         component: () => import(/* webpackChunkName: "welcome" */ '../views/welcome/welcome'),
       },
@@ -44,6 +47,7 @@ const routes = [
     name: '图表可视化',
     meta: {
       icon: 'iconfont icontubiao',
+      isCatalog: true,
     },
     component: Layout,
     children: [
@@ -52,7 +56,7 @@ const routes = [
         name: 'Echarts',
         meta: {
           breadcrumb: ['图表可视化', 'Echarts'],
-          isMenu: true,
+          isCatalog: false,
         },
         component: () => import(/* webpackChunkName: "echarts" */ '../views/echarts/echarts'),
       },
@@ -63,6 +67,7 @@ const routes = [
     name: '系统管理',
     meta: {
       icon: 'iconfont iconxitongguanli',
+      isCatalog: true,
     },
     component: Layout,
     children: [
@@ -70,17 +75,28 @@ const routes = [
         path: '/users',
         name: '用户管理',
         meta: {
-          breadcrumb: ['系统管理', '用户管理'],
-          isMenu: true,
+          icon: '',
+          isCatalog: true,
         },
-        component: () => import(/* webpackChunkName: "users" */ '../views/echarts/echarts'),
+        component: UserBox,
+        children: [
+          {
+            path: '/staff',
+            name: '员工管理',
+            meta: {
+              breadcrumb: ['系统管理', '员工管理'],
+              isCatalog: false,
+            },
+            component: () => import(/* webpackChunkName: "users" */ '../views/echarts/echarts'),
+          },
+        ],
       },
       {
         path: '/change-password',
         name: '修改密码',
         meta: {
           breadcrumb: ['系统管理', '修改密码'],
-          isMenu: true,
+          isCatalog: false,
         },
         component: () => import(/* webpackChunkName: "change-password" */ '../views/echarts/echarts'),
       },
