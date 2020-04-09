@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
-import '../../assets/logo.png';
+import logo from '../../assets/logo.png';
+import avatar from '../../assets/avatar.png';
 
 @Component
 export default class AppHeader extends Vue {
@@ -8,11 +9,11 @@ export default class AppHeader extends Vue {
     return <el-header>
       <el-row>
         <el-col span={12} class="tl">
-          <img src='../../assets/logo.png' width="34" alt="abc"/>
-          <span>小呆哞，大容量</span>
+          <img src={logo} width="34" alt="ABC"/>
+          <span class="slogan">小呆哞，大容量</span>
         </el-col>
         <el-col span={12} class="tr">
-          <el-avatar src="../../assets/avatar.png" size="medium"/>
+          <el-avatar src={avatar} size="medium"/>
         </el-col>
       </el-row>
     </el-header>;
