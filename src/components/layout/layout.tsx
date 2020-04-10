@@ -20,7 +20,9 @@ export default class Layout extends Vue {
         <app-sidebar/>
         <el-main>
           <app-breadcrumb/>
-          <router-view/>
+          <el-col span={24} class="app-main-content">
+            <router-view/>
+          </el-col>
         </el-main>
       </el-container>
     </el-container>;
