@@ -4,7 +4,7 @@ import store from '../store/index';
 
 const Login = () => import(/* webpackChunkName: "login" */ '../views/login/login');
 const Layout = () => import(/* webpackChunkName: "layout" */ '../components/layout/layout');
-const UserBox = () => import(/* webpackChunkName: "user-box" */ '../views/users/user-box.vue');
+const UserBox = () => import(/* webpackChunkName: "user-box" */ '../views/system/users/user-box.vue');
 
 Vue.use(VueRouter);
 
@@ -84,10 +84,10 @@ const routes = [
             path: '/staff',
             name: '员工管理',
             meta: {
-              breadcrumb: ['系统管理', '员工管理'],
+              breadcrumb: ['系统管理', '用户管理', '员工管理'],
               isCatalog: false,
             },
-            component: () => import(/* webpackChunkName: "users" */ '../views/echarts/echarts'),
+            component: () => import(/* webpackChunkName: "users" */ '../views/system/users/staff'),
           },
         ],
       },
