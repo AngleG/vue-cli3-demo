@@ -5,9 +5,9 @@ import './login.scss';
 @Component
 
 export default class Login extends Vue {
-  userName = '';
+  userName = 'wxx';
 
-  userPassword = '';
+  userPassword = 'admin';
 
   loginHandle() {
     if (!this.userName) {

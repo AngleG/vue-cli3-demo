@@ -5,15 +5,15 @@
   .welcome-content{
     width: 360px;
     height: 440px;
-    background: #fff;
-    -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
     position: absolute;
     top: 50%;
     right: 50%;
     margin-top: -220px;
     margin-right: -180px;
+    background: #fff;
+    -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
     text-align: center;
     padding: 60px;
     box-sizing: border-box;
