@@ -4,6 +4,15 @@ import Element from 'element-ui';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+import './lib/global';
+
+declare module 'vue/types/vue' {
+  // 声明为Vue补充的东西
+  interface Vue {
+    // eslint-disable-next-line
+    [propsName: string]: any;
+  }
+}
 
 Vue.config.productionTip = false;
 
