@@ -17,5 +17,6 @@ module.exports = {
     'linebreak-style': [0 ,'error', 'windows'],
     'class-methods-use-this': 'off',
     'import/no-self-import': 'off',
+    'no-underscore-dangle': 'off',
   },
 };
