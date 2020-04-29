@@ -28,8 +28,6 @@ export default class AppSidebar extends Vue {
   }
 
   getMenuList($router: VueRouter) {
-    // eslint-disable-next-line
-    /* eslint-disable */
     const router: any = $router;
     const { options: { routes } } = router;
     this.menus = routes.filter((route: RouteConfig) => route.children && route.children.length);

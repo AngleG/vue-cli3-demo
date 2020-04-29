@@ -34,7 +34,7 @@
       line-height: 49px;
       background: #001529;
       text-align: right;
-      padding: 0 20px;
+      padding-right: 17px;
       box-sizing: border-box;
       border-bottom: 1px solid #606266;
       transition: width 0.3s ease;
@@ -52,11 +52,14 @@
     .sidebar-menu-box{
       width: 160px;
       background: #001529;
-      transition: width .3s ease;
+      transition: width .25s ease;
     }
     .sidebar-menu-box-fold{
       width: 50px;
-      transition: width .3s ease;
+      transition: width .25s ease;
+    }
+    .el-menu--collapse {
+      width: 50px;
     }
   }
   .breadcrumb-tag{
