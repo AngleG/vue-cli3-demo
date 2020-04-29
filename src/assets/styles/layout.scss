@@ -18,6 +18,11 @@
     .tr, .el-dropdown{
       height: 60px;
     }
+    .el-dialog{
+      .dialog-content{
+        padding-right: 10px;
+      }
+    }
   }
   .el-aside{
     background: #001529;
