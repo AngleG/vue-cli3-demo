@@ -7,7 +7,7 @@ module.exports = {
   //   requireModuleExtension: false
   // },
   configureWebpack: config => {
-    if(process.env.NODE_ENV !== 'production') return;
+    // if(process.env.NODE_ENV !== 'production') return;
     return {
       plugins: [
         new PrerenderSPAPlugin({
@@ -16,7 +16,7 @@ module.exports = {
           renderer: new Renderer({
             inject: {},
             // Display the browser window when rendering. Useful for debugging.
-            headless: false,
+            // headless: false,
             // 在 main.js 中 document.dispatchEvent(new Event('render-event'))，两者的事件名称要对应上。
             renderAfterDocumentEvent: 'render-event'
           }),
