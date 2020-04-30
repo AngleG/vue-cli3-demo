@@ -1,8 +1,26 @@
 .el-menu{
     text-align: left;
     border-right: 0;
+    .el-menu-item{
+      .el-tooltip{
+        padding: 0 17px !important;
+      }
+    }
+    .el-submenu__title{
+        padding: 0 17px !important;
+    }
     i{
         margin-right: 5px;
+    }
+    .el-menu-item:hover{
+        background-color: #5A5C61 !important;
+    }
+}
+.el-menu--popup{
+    padding: 0;
+    .el-menu-item {
+        height: 40px;
+        line-height: 40px;
     }
 }
 .el-main{
