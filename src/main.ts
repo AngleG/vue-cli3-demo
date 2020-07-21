@@ -6,6 +6,8 @@ import router from './router';
 import store from './store';
 import './lib/global';
 
+import './lib/vue-component';
+
 declare module 'vue/types/vue' {
   // 声明为Vue补充的东西
   interface Vue {
