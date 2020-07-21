@@ -13,6 +13,8 @@ import '../../assets/styles/layout.scss';
   },
 })
 export default class Layout extends Vue {
+  show = true;
+
   render() {
     return <el-container class="app-container">
       <app-header/>
@@ -21,7 +23,9 @@ export default class Layout extends Vue {
         <el-main>
           <app-breadcrumb/>
           <el-col span={24} class="app-main-content">
-            <router-view/>
+            <transition name="slide-fade">
+              {this.show ? <router-view/> : null}
+            </transition>
           </el-col>
         </el-main>
       </el-container>
