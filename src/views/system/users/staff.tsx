@@ -1,13 +1,12 @@
 import { CreateElement } from 'vue';
 import { Vue, Component } from 'vue-property-decorator';
-import BaseTable, { BaseTableData, BaseTableColumn, TableRowOption } from '../../../components/common/base-table';
+import { BaseTableData, BaseTableColumn, TableRowOption } from '../../../components/common/base-table';
+import './staff.scss';
 
-@Component({
-  components: {
-    BaseTable,
-  },
-})
+@Component
 export default class Staff extends Vue {
+  keyword = '';
+
   tableData: BaseTableData[] = [
     {
       name: '吴笑笑',
@@ -79,8 +78,12 @@ export default class Staff extends Vue {
   }
 
   render() {
-    const { tableData, tableColumns } = this.$data;
+    const { tableData, tableColumns, keyword } = this.$data;
     return <div class="staff">
+      <div class="staff-search">
+        <el-input class="w_250" value={keyword} onInput={(val: string) => { this.keyword = val; }} placeholder="请输入姓名、职位、部门" />
+        <el-button type="primary">搜索</el-button>
+      </div>
       <base-table border tableData={tableData} tableColumns={tableColumns}/>
     </div>;
   }
