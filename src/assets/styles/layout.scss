@@ -83,4 +83,11 @@
     padding: 20px;
     height: 100%;
   }
+  .slide-fade-enter-active{
+    transition: all 0.3s ease;
+  }
+  .slide-fade-enter{
+    transform: translateX(10px);
+    opacity: 0;
+  }
 }
