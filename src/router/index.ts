@@ -92,13 +92,13 @@ const routes = [
         ],
       },
       {
-        path: '/change-password',
-        name: '修改密码',
+        path: '/roles',
+        name: '角色管理',
         meta: {
-          breadcrumb: ['系统管理', '修改密码'],
+          breadcrumb: ['系统管理', '角色管理'],
           isCatalog: false,
         },
-        component: () => import(/* webpackChunkName: "change-password" */ '../views/echarts/echarts'),
+        component: () => import(/* webpackChunkName: "change-password" */ '../views/system/roles'),
       },
     ],
   },
