@@ -25,6 +25,5 @@ module.exports = {
     'class-methods-use-this': 'off',
     'import/no-self-import': 'off',
     'no-underscore-dangle': 'off',
-    'object-curly-newline': ["error", { "multiline": true }]
   },
 };
