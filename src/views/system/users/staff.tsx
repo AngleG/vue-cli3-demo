@@ -1,36 +1,42 @@
 import { CreateElement } from 'vue';
 import { Vue, Component } from 'vue-property-decorator';
-import { BaseTableData, BaseTableColumn, TableRowOption } from '../../../components/common/base-table';
+import { BaseTableData, BaseTableColumn, TableRowOption } from '@/components/common/base-table';
 import './staff.scss';
+import webApi from '../../../lib/api/api';
 
 @Component
 export default class Staff extends Vue {
+  isLoading = false;
+
   keyword = '';
 
-  tableData: BaseTableData[] = [
-    {
-      name: '吴笑笑',
-      position: '前端工程师',
-      department: '产研部',
-      status: '在职',
-      joinDate: '2018.03.19',
-    },
-    {
-      name: '步星星',
-      position: 'BIM工程师',
-      department: 'BIM',
-      status: '在职',
-      joinDate: '2018.03.19',
-    },
-  ];
+  tableData: BaseTableData[] = [];
 
   tableColumns: BaseTableColumn[] = [];
 
-  created() {
-    this.addVnode();
+  openDialogHandle(id: number) {
+    console.log(id, '---id');
   }
 
-  addVnode() {
+  quitHandle(row: TableRowOption) {
+    console.log(row, '---row');
+  }
+
+  async getStaffList() {
+    this.isLoading = true;
+    const res = await webApi.getStaffList();
+    if (res.flags === 'success') {
+      const { results } = res.data;
+      if (results) {
+        this.tableData = results || [];
+      }
+    } else {
+      this.$toast(res.message, 'error');
+    }
+    this.isLoading = false;
+  }
+
+  created() {
     this.tableColumns = [
       {
         label: '序号',
@@ -51,6 +57,7 @@ export default class Staff extends Vue {
       {
         label: '状态',
         prop: 'status',
+        formatter: (row: TableRowOption) => (row.status ? '在职' : '离职'),
       },
       {
         label: '入职日期',
@@ -61,30 +68,27 @@ export default class Staff extends Vue {
         showOverflowTooltip: false,
         width: 145,
         // eslint-disable-next-line
-        render: (h: CreateElement, params: any) => (<div>
-          <el-button size="mini" onClick={this.transferHandle.bind(this, params.row)}>转岗</el-button>
-          <el-button size="mini" type="danger" onClick={this.quitHandle.bind(this, params.row)}>离职</el-button>
-        </div>),
+        render: (h: CreateElement, params: any) => {
+          const { id } = params.row;
+          return <div>
+              <el-button size="mini" onClick={this.openDialogHandle.bind(this, id)}>转岗</el-button>
+              <el-button size="mini" type="danger" onClick={this.openDialogHandle.bind(this, id)}>离职</el-button>
+            </div>;
+        },
       },
     ];
-  }
-
-  transferHandle(row: TableRowOption) {
-    console.log(row, '---row');
-  }
-
-  quitHandle(row: TableRowOption) {
-    console.log(row, '---row');
+    this.getStaffList();
   }
 
   render() {
-    const { tableData, tableColumns, keyword } = this.$data;
+    const { isLoading, tableData, tableColumns, keyword } = this.$data;
+    const directives = [{ name: 'loading', value: isLoading }];
     return <div class="staff">
       <div class="staff-search">
         <el-input class="w_250" value={keyword} onInput={(val: string) => { this.keyword = val; }} placeholder="请输入姓名、职位、部门" />
         <el-button type="primary">搜索</el-button>
       </div>
-      <base-table border tableData={tableData} tableColumns={tableColumns}/>
+      <base-table {...{ directives }} border tableData={tableData} tableColumns={tableColumns}/>
     </div>;
   }
 }

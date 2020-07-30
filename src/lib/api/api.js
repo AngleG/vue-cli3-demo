@@ -8,6 +8,9 @@ const webApi = {
   getRoles() {
     return httpRequest('/roles', {}, { method: 'get' });
   },
+  getStaffList() {
+    return httpRequest('/staff', {}, { method: 'get' });
+  },
 };
 
 export default webApi;

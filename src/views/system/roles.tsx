@@ -30,7 +30,6 @@ export default class Roles extends Vue {
   async getRoles() {
     this.isLoading = true;
     const res = await webApi.getRoles();
-    console.log(res, '1233');
     if (res.flags === 'success') {
       const { data } = res;
       if (data) {
@@ -49,8 +48,9 @@ export default class Roles extends Vue {
 
   render() {
     const { tableData, tableColumns, isLoading } = this.$data;
+    const directives = [{ name: 'loading', value: isLoading }];
     return <div>
-      <base-table border tableData={tableData} tableColumns={tableColumns}/>
+      <base-table {...{ directives }} border tableData={tableData} tableColumns={tableColumns}/>
     </div>;
   }
 }

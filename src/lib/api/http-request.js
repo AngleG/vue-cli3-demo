@@ -47,6 +47,7 @@ const requestSuccess = (res) => {
 };
 
 const requestError = (err) => {
+  console.log(err, '请求错误');
   const { response } = err;
   const { status } = response;
   if (!response || !errorCodeList.includes(status)) {
@@ -71,7 +72,7 @@ const httpRequest = function (url, data = {}, options = { method: 'get' }, param
       url,
       data,
       params,
-      timeout: 5000,
+      timeout: 6000,
       ...options,
     },
   )
