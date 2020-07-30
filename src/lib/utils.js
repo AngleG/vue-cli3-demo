@@ -6,7 +6,7 @@
 import { Message } from 'element-ui';
 
 const toast = function (message, type = 'warning', showClose = false, duration = 4000) {
-  return Message({
+  Message({
     message,
     type,
     showClose,
