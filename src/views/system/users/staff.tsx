@@ -82,14 +82,18 @@ export default class Staff extends Vue {
 
   render() {
     const { isLoading, tableData, tableColumns, keyword } = this.$data;
-    // const directives = [{ name: 'loading', value: isLoading }];
+    const direct = [{ name: 'loading', value: isLoading }];
     const directives = [{ name: 'preventRepeatClick', value: 1000 }];
     return <div class="staff">
       <div class="staff-search">
         <el-input class="w_250" value={keyword} onInput={(val: string) => { this.keyword = val; }} placeholder="请输入姓名、职位、部门" />
         <el-button {...{ directives }} type="primary" onClick={this.testHandle}>搜索</el-button>
       </div>
-      <base-table {...[{ name: 'loading', value: isLoading }]} border tableData={tableData} tableColumns={tableColumns}/>
+      <base-table
+        {...{ directives: direct }}
+        border
+        tableData={tableData}
+        tableColumns={tableColumns}/>
     </div>;
   }
 }
