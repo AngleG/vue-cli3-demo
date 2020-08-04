@@ -38,8 +38,11 @@ export default class AppBreadcrumb extends Vue {
   }
 
   clickHandle(path: string) {
-    this.$router.push(path);
-    this.path = path;
+    const prevRoute = this.$route.path;
+    if (prevRoute !== path) {
+      this.$router.push(path);
+      this.path = path;
+    }
   }
 
   render() {
