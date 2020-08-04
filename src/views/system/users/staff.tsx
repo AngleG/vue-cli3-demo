@@ -14,12 +14,12 @@ export default class Staff extends Vue {
 
   tableColumns: BaseTableColumn[] = [];
 
-  openDialogHandle(id: number) {
-    console.log(id, '---id');
+  testHandle() {
+    console.log('触发一次');
   }
 
-  quitHandle(row: TableRowOption) {
-    console.log(row, '---row');
+  openDialogHandle(id: number) {
+    console.log(id, '---id');
   }
 
   async getStaffList() {
@@ -82,13 +82,14 @@ export default class Staff extends Vue {
 
   render() {
     const { isLoading, tableData, tableColumns, keyword } = this.$data;
-    const directives = [{ name: 'loading', value: isLoading }];
+    // const directives = [{ name: 'loading', value: isLoading }];
+    const directives = [{ name: 'preventRepeatClick', value: 1000 }];
     return <div class="staff">
       <div class="staff-search">
         <el-input class="w_250" value={keyword} onInput={(val: string) => { this.keyword = val; }} placeholder="请输入姓名、职位、部门" />
-        <el-button type="primary">搜索</el-button>
+        <el-button {...{ directives }} type="primary" onClick={this.testHandle}>搜索</el-button>
       </div>
-      <base-table {...{ directives }} border tableData={tableData} tableColumns={tableColumns}/>
+      <base-table {...[{ name: 'loading', value: isLoading }]} border tableData={tableData} tableColumns={tableColumns}/>
     </div>;
   }
 }
